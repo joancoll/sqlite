@@ -2,7 +2,6 @@ package cat.dam.andy.sqlite;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -21,13 +20,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        initViews();
+        initListeners();
+        initDatabase();
+    }
 
-        databaseHelper = new DatabaseHelper(this);
-        tv_noms = (TextView) findViewById(R.id.tv_noms);
-        btn_desa = (Button) findViewById(R.id.btn_desa);
-        btn_mostra = (Button) findViewById(R.id.btn_mostra);
-        et_nom = (EditText) findViewById(R.id.et_nom);
+    void initViews() {
+        btn_desa = findViewById(R.id.btn_desa);
+        btn_mostra = findViewById(R.id.btn_mostra);
+        et_nom = findViewById(R.id.et_nom);
+        tv_noms = findViewById(R.id.tv_noms);
+    }
 
+    void initListeners() {
         btn_desa.setOnClickListener(v -> {
             databaseHelper.afegeix_detallAlumne(et_nom.getText().toString());
             et_nom.setText("");
@@ -36,9 +41,13 @@ public class MainActivity extends AppCompatActivity {
         btn_mostra.setOnClickListener(v -> {
             arrayList = databaseHelper.obte_llistaAlumnes();
             tv_noms.setText("");
-            for (int i = 0; i < arrayList.size(); i++){
-                tv_noms.setText(tv_noms.getText().toString()+" -"+arrayList.get(i));
+            for (int i = 0; i < arrayList.size(); i++) {
+                tv_noms.setText(tv_noms.getText().toString() + " -" + arrayList.get(i));
             }
         });
+    }
+
+    private void initDatabase() {
+        databaseHelper = new DatabaseHelper(this);
     }
 }

@@ -12,10 +12,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String TAULA_ALUMNES = "alumnes";
     private static final String CLAU_ID = "id";
     private static final String CLAU_NOM = "nom";
+
     // Utilitza un String parametritzat per a la instrucció que crea de la taula alumnes
     private static final String CREA_TAULA_ALUMNES = "CREATE TABLE "
             + TAULA_ALUMNES + "(" + CLAU_ID
             + " INTEGER PRIMARY KEY AUTOINCREMENT," + CLAU_NOM + " TEXT );";
+
     public DatabaseHelper(Context context) {
         super(context, NOM_BD, null, VERSIO_BD);
         Log.d("table", CREA_TAULA_ALUMNES);
@@ -30,6 +32,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS '" + TAULA_ALUMNES + "'");
         onCreate(db);
     }
+
     public void afegeix_detallAlumne(String alumne) {
         SQLiteDatabase db = this.getWritableDatabase();
         // Crea valors de contingut
@@ -38,6 +41,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // inserta una fila a la taula alumnes
         long insert = db.insert(TAULA_ALUMNES, null, valors);
     }
+
     @SuppressLint("Range")
     public ArrayList<String> obte_llistaAlumnes() {
         ArrayList<String> arrayList_Alumnes = new ArrayList<>();
