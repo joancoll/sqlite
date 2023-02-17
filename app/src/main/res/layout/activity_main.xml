@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/design_default_color_primary"
+    android:background="@color/design_default_color_secondary_variant"
     tools:context=".MainActivity">
 
     <TextView
@@ -14,7 +14,7 @@
         android:textColor="#fff"
         android:textSize="20sp"
         android:layout_marginTop="10dp"
-        android:text="Entri el nom que vol desar a SQLite" />
+        android:text="@string/write_name_hint" />
 
     <EditText
         android:layout_width="match_parent"
@@ -23,7 +23,10 @@
         android:background="#fff"
         android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
-        android:hint="Escrigui el nom"/>
+        android:hint="@string/write_name"
+        android:autofillHints="name"
+        android:inputType="textPersonName|textNoSuggestions"
+        />
 
     <Button
         android:layout_width="wrap_content"
@@ -31,14 +34,14 @@
         android:id="@+id/btn_desa"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
-        android:text="Desa"/>
+        android:text="@string/save"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btn_mostra"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
-        android:text="Mostra noms desats"/>
+        android:text="@string/show_saved_names"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -48,6 +51,6 @@
         android:textColor="#fff"
         android:textSize="20sp"
         android:layout_marginTop="10dp"
-        android:text="Entri un nom per a desar-lo a SQLite" />
+        android:text="@string/instructions" />
 
 </LinearLayout>

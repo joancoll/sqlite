@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">sqlite</string>
+    <string name="write_name_hint">Entri el nom que vol desar a SQLite</string>
+    <string name="write_name">Escrigui el nom</string>
+    <string name="save">Desa</string>
+    <string name="show_saved_names">Mostra noms desats</string>
+    <string name="instructions">Entri un nom per a desar-lo a SQLite</string>
+    <string name="empty_name">El nom no pot estar buit!</string>
+    <string name="saved_OK">S\'ha desat correctament!</string>
 </resources>

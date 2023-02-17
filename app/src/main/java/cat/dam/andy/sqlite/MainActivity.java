@@ -34,15 +34,21 @@ public class MainActivity extends AppCompatActivity {
 
     void initListeners() {
         btn_desa.setOnClickListener(v -> {
-            databaseHelper.afegeix_detallAlumne(et_nom.getText().toString());
-            et_nom.setText("");
-            Toast.makeText(MainActivity.this, "S'ha desat correctament!", Toast.LENGTH_SHORT).show();
+            String name= et_nom.getText().toString();
+            if (name.isEmpty()) {
+                Toast.makeText(this, R.string.empty_name, Toast.LENGTH_SHORT).show();
+            }
+            else {
+                databaseHelper.insertUsername(et_nom.getText().toString());
+                et_nom.setText("");
+                Toast.makeText(this, R.string.saved_OK, Toast.LENGTH_SHORT).show();
+            }
         });
         btn_mostra.setOnClickListener(v -> {
-            arrayList = databaseHelper.obte_llistaAlumnes();
+            arrayList = databaseHelper.getAllUsernames();
             tv_noms.setText("");
             for (int i = 0; i < arrayList.size(); i++) {
-                tv_noms.setText(tv_noms.getText().toString() + " -" + arrayList.get(i));
+                tv_noms.setText(String.format("%s -%s", tv_noms.getText().toString(), arrayList.get(i)));
             }
         });
     }
