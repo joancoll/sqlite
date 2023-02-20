@@ -8,5 +8,5 @@
     <string name="empty_name">El nom no pot estar buit!</string>
     <string name="nothing_to_deleted">Per eliminar hi ha d\'haver registres i haver-ne seleccionat un</string>
     <string name="saved_OK">S\'ha desat correctament!</string>
-    <string name="deleted_OK">S\'ha suprimit correctament!</string>
+    <string name="deleted_OK">S\'ha suprimit correctament! (%1$d)</string>
 </resources>

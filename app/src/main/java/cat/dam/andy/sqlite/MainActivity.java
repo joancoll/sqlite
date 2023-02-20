@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         initListeners();
         initDatabase();
         initSpinner();
-        refreshSpinner();
+        spinnerRefresh();
     }
 
     void initViews() {
@@ -48,15 +48,15 @@ public class MainActivity extends AppCompatActivity {
             else {
                 databaseHelper.insertUsername(et_name.getText().toString());
                 et_name.setText("");
-                refreshSpinner();
+                spinnerRefresh();
                 Toast.makeText(this, R.string.saved_OK, Toast.LENGTH_SHORT).show();
             }
         });
         btn_delete.setOnClickListener(v -> {
             if (sp_names.getSelectedItem() != null && selectedUserId!=-1) {
                 databaseHelper.deleteUsername(selectedUserId);
-                refreshSpinner();
-                Toast.makeText(this, R.string.deleted_OK + "("+selectedUserId+")", Toast.LENGTH_SHORT).show();
+                spinnerRefresh();
+                Toast.makeText(this, getString(R.string.deleted_OK, selectedUserId), Toast.LENGTH_SHORT).show();
                 selectedUserId=-1;
             }
             else {
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void refreshSpinner() {
+    private void spinnerRefresh() {
         arrayListUsers = databaseHelper.getAllUsers();
         String[] arrayListNames = new String[arrayListUsers.size()];
         for (int i = 0; i < arrayListUsers.size(); i++) {
