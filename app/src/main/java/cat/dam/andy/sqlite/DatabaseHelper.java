@@ -46,10 +46,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.insert(TABLE_NAME, null, valors);
         //no cal tancar la base de dades, ja que es fa automàticament
     }
+
+    //inserta un nou registre a la taula
+    public void deleteUsername(int selectedUserId) {
+        // Obre la base de dades en mode escriptura i inserta nou registre
+        SQLiteDatabase db = this.getWritableDatabase();
+        //esborra el registre
+        db.delete(TABLE_NAME, KEY_ID + " = ?",
+                new String[]{String.valueOf(selectedUserId)});
+        //no cal tancar la base de dades, ja que es fa automàticament
+    }
     
-    //retorna tots els noms de la taula
-    public ArrayList<String> getAllUsernames() {
-        ArrayList<String> arrayList = new ArrayList<>();
+    //retorna tots els objectes de la taula
+    public ArrayList<UserName> getAllUsers() {
+        ArrayList<UserName> arrayList = new ArrayList<>();
+        int id;
         String nom;
         String selectQuery = "SELECT  * FROM " + TABLE_NAME;
         SQLiteDatabase db = this.getReadableDatabase();
@@ -57,9 +68,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // Recorre totes les files i les afegeix a la llista
         if (c.moveToFirst()) {
             do {
+                id= c.getInt(c.getColumnIndexOrThrow(KEY_ID));
                 nom = c.getString(c.getColumnIndexOrThrow(KEY_NAME));
+                UserName userName = new UserName(id, nom);
                 // afegeix a la llista de noms
-                arrayList.add(nom);
+                arrayList.add(userName);
             } while (c.moveToNext());
             Log.d("array", arrayList.toString());
         }
