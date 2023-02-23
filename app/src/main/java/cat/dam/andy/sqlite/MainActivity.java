@@ -31,6 +31,14 @@ public class MainActivity extends AppCompatActivity {
         initSpinner();
         spinnerRefresh();
     }
+    @Override
+    protected void onDestroy() {
+        // Quan sortim de l'aplicació tanquem la base de dades per evitar problemes de memòria
+        super.onDestroy();
+        if(databaseHelper != null){
+            databaseHelper.close();
+        }
+    }
 
     void initViews() {
         btn_save = findViewById(R.id.btn_save);
